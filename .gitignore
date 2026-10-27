@@ -1,0 +1,8 @@
+# Temporales de Microsoft Office
+~$*
+*.tmp
+
+# Sistema
+Thumbs.db
+.DS_Store
+desktop.ini
