@@ -70,7 +70,9 @@ Todos los componentes están **completos y verificados**:
 proyecto-tcc/
 ├── README.md                       # este archivo
 ├── documento/
-│   └── Avance_TCC.docx             # documento del TCC (plantilla oficial)
+│   ├── Documento_Final_TCC.docx    # documento final en la plantilla oficial (v3)
+│   ├── Documento_Final_TCC.pdf     # versión PDF lista para entregar
+│   └── Avance_TCC.docx             # versión del avance
 ├── diseno/
 │   ├── 01-arquitectura-segura.md
 │   ├── 02-flujo-datos-amenazas-STRIDE.md
