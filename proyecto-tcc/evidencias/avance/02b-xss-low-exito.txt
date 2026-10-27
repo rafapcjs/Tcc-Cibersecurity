@@ -1,0 +1,18 @@
+EVIDENCIA DE AVANCE - ATAQUE 2: CROSS-SITE SCRIPTING (XSS) (DVWA, nivel Low)
+Fecha: 2026-10-26 20:58  |  Objetivo: http://127.0.0.1:4280 (lab aislado)
+================================================================
+
+--- XSS REFLEJADO ---
+Payload en parametro 'name':  <script>alert('XSS')</script>
+La respuesta del servidor incluye el script SIN sanitizar (se ejecuta en el navegador):
+   Hello <script>alert('XSS')</script>
+
+--- XSS ALMACENADO (persistente, en el libro de visitas) ---
+Tras guardarlo, el script queda almacenado y se sirve a CUALQUIER visitante:
+   <script>alert('XSS-stored')</script>
+
+LECTURA:
+ - Causa: la entrada se refleja/almacena sin codificar; el navegador la ejecuta.
+ - Impacto: robo de cookies de sesion, suplantacion, defacement.
+ - Mitigacion: codificar la salida (htmlspecialchars), cabecera
+   Content-Security-Policy y cookies con HttpOnly (nivel High de DVWA).

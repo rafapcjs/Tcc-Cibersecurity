@@ -1,0 +1,22 @@
+EVIDENCIA - MITIGACIONES (DESPUES): los ataques dejan de funcionar
+Fecha: 2026-10-26 20:59  |  Objetivo: http://127.0.0.1:4280 (lab aislado)
+================================================================
+
+1) INYECCION SQL  ->  nivel 'impossible' (consultas parametrizadas PDO)
+   Payload 1' OR '1'='1  ->  usuarios devueltos: 0  (antes: 5)
+   Resultado: el ataque NO extrae datos. Mitigado.
+
+2) XSS REFLEJADO  ->  nivel 'high' (filtrado/escape de la entrada)
+   El <script> fue eliminado: no se ejecuta en el navegador. Mitigado.
+
+3) FUERZA BRUTA  ->  nivel 'high' (token anti-CSRF por intento + retardo)
+   Sin token valido el intento es RECHAZADO: rompe la automatizacion. Mitigado.
+
+4) CREDENCIALES  ->  hash con sal (bcrypt/Argon2) vs. MD5 sin sal de DVWA
+   Ver scripts/demo_hash_passwords.py: en texto plano/MD5 las claves caen;
+   con hash+sal no hay rainbow tables y las claves fuertes resisten.
+
+RESUMEN ANTES -> DESPUES
+  SQLi:        5 usuarios extraidos   ->  0 (parametrizadas)
+  XSS:         script ejecutado       ->  script neutralizado
+  Fuerza bruta: clave hallada         ->  acceso denegado (token)

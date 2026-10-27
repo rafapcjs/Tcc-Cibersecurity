@@ -1,0 +1,18 @@
+EVIDENCIA DE AVANCE - LABORATORIO DOCKER (red aislada)
+Fecha de captura: 2026-10-26 20:44
+=======================================================
+
+>> Contenedores del laboratorio en ejecucion:
+kali  |  Up 4 minutes  |  
+dvwa  |  Up 4 minutes  |  127.0.0.1:4280->80/tcp
+
+>> Red aislada 'labnet' (DVWA solo escucha en 127.0.0.1):
+   Red: labnet  Driver: bridge
+
+>> Conectividad Kali (atacante) -> DVWA (victima) por la red interna:
+   http://dvwa/login.php -> HTTP 200
+
+>> Herramientas instaladas en Kali:
+   1.10.9#stable
+   nmap 7.991
+   hydra 9.7

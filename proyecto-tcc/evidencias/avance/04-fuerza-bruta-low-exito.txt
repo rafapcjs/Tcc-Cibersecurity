@@ -1,0 +1,24 @@
+EVIDENCIA DE AVANCE - ATAQUE 3: FUERZA BRUTA (DVWA, nivel Low)
+Fecha: 2026-10-26 20:57  |  Objetivo: http://127.0.0.1:4280 (lab aislado)
+Tecnica: barrido automatizado de un diccionario contra el login (equivale a Hydra)
+================================================================
+Usuario objetivo: admin
+
+   probando admin:123456   -> fallida
+   probando admin:admin   -> fallida
+   probando admin:letmein   -> fallida
+   probando admin:root   -> fallida
+   probando admin:toor   -> fallida
+   probando admin:password   -> *** ACCESO CONCEDIDO (contrasena encontrada) ***
+   probando admin:qwerty   -> fallida
+   probando admin:12345   -> fallida
+   probando admin:abc123   -> fallida
+   probando admin:colombia   -> fallida
+
+LECTURA:
+ - Causa: el login no limita el numero de intentos -> se pueden probar
+   miles de contrasenas automaticamente.
+ - Agravante: la clave 'password' es debil y muy comun.
+ - Mitigacion: limite de intentos + bloqueo temporal + CAPTCHA (nivel High
+   de DVWA anade retardo que frena el ataque) y politica de claves robustas +
+   almacenamiento con hash y sal (scripts/demo_hash_passwords.py).
