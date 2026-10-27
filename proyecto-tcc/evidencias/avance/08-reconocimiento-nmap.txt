@@ -1,0 +1,17 @@
+EVIDENCIA - FASE DE RECONOCIMIENTO (nmap desde Kali)
+Fecha: 2026-10-26 21:55  |  Objetivo: dvwa (laboratorio aislado labnet)
+Herramienta: nmap (Kali)  |  Comando: nmap -sV -T4 dvwa
+================================================================
+Starting Nmap 7.991 ( https://nmap.org ) at 2026-10-27 02:55 +0000
+Nmap scan report for dvwa (172.23.0.2)
+Host is up (0.000023s latency).
+rDNS record for 172.23.0.2: dvwa.labnet
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.25 ((Debian))
+MAC Address: B2:F9:B1:CF:35:8B (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 7.26 seconds
+
+LECTURA: se identifica el servicio expuesto (Apache httpd 2.4.25 en el
+puerto 80/HTTP), punto de entrada de la aplicacion web a auditar.

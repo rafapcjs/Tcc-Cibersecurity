@@ -38,6 +38,7 @@ Todos los componentes están **completos y verificados**:
 - ✅ **Los 3 ataques demostrados** con su mitigación (evidencia antes → después).
 - ✅ **Script de criptografía** probado (texto plano vs. hash con sal).
 - ✅ **3 artefactos de diseño** (arquitectura, flujo + STRIDE, controles).
+- ✅ **Análisis de riesgos MAGERIT** (enfoque complementario) + matriz en Excel.
 - ✅ **Diapositivas + guion** de la sustentación (10 min).
 - ✅ **Guía de demostración en vivo** para la sustentación.
 
@@ -74,6 +75,9 @@ proyecto-tcc/
 │   ├── 01-arquitectura-segura.md
 │   ├── 02-flujo-datos-amenazas-STRIDE.md
 │   └── 03-controles.md
+├── analisis-riesgos/
+│   ├── analisis-de-riesgos-MAGERIT.md   # metodología MAGERIT / ISO 27005
+│   └── matriz-de-riesgos.xlsx           # matriz probabilidad × impacto
 ├── laboratorio/
 │   ├── guia-montaje-docker.md      # ruta elegida (Docker)
 │   ├── guia-montaje.md             # alternativa (VirtualBox)
@@ -82,7 +86,7 @@ proyecto-tcc/
 │   ├── demo_hash_passwords.py      # criptografía: hash con sal (probado)
 │   └── README.md
 ├── evidencias/
-│   └── avance/                     # 9 evidencias (capturas, logs, antes/después)
+│   └── avance/                     # 11 evidencias (recon, capturas, logs, antes/después)
 └── sustentacion/
     ├── Sustentacion_TCC.pptx       # 11 diapositivas con capturas
     ├── guion-sustentacion.md       # guion con tiempos y reparto
